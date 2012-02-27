@@ -154,7 +154,8 @@ var Admin = {
 
             var container = jQuery(this).closest('[data-prototype]');
             var proto = container.attr('data-prototype');
-            proto = proto.replace(/\$\$name\$\$/g, container.children().length);
+            var proto_name = container.attr('data-prototype-name');
+            proto = proto.replace(new RegExp(proto_name.replace(/([\[\]\{\}\.\*\\\^\$])/g, '\\$1'), 'g'), container.children().length);
             jQuery(proto).insertBefore(jQuery(this).parent());
         });
 
