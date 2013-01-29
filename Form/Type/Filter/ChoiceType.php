@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class ChoiceType extends AbstractType
 {
@@ -52,7 +53,7 @@ class ChoiceType extends AbstractType
         );
 
         $builder
-            ->add('type', 'choice', array('choices' => $choices, 'required' => false))
+            ->add('type', 'choice', array('choices' => $choices, 'required' => false, 'value_strategy' => ChoiceList::COPY_CHOICE))
             ->add('value', $options['field_type'], array_merge(array('required' => false), $options['field_options']))
         ;
     }
