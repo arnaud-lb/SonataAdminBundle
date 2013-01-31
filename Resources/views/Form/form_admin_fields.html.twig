@@ -124,7 +124,7 @@ file that was distributed with this source code.
 {% spaceless %}
     {% if prototype is defined %}
         {% set child = prototype %}
-        {% set attr = attr|merge({'data-prototype': block('collection_widget_row') }) %}
+        {% set attr = attr|merge({'data-prototype': block('collection_widget_row'), 'data-prototype-name': prototype.get('name') }) %}
     {% endif %}
     <div {{ block('widget_container_attributes') }}>
         {{ form_errors(form) }}
