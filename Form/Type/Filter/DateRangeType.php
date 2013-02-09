@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class DateRangeType extends AbstractType
 {
@@ -51,7 +52,7 @@ class DateRangeType extends AbstractType
         );
         
         $builder
-            ->add('type', 'choice', array('choices' => $choices, 'required' => false))
+            ->add('type', 'choice', array('choices' => $choices, 'required' => false, 'value_strategy' => ChoiceList::COPY_CHOICE))
             ->add('value', 'sonata_type_date_range', array('field_options' => $options['field_options']))
         ;
     }

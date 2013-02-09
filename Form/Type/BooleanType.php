@@ -13,6 +13,7 @@ namespace Sonata\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType as FormChoiceType;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class BooleanType extends FormChoiceType
 {
@@ -35,6 +36,8 @@ class BooleanType extends FormChoiceType
             self::TYPE_YES  => $this->translator->trans('label_type_yes', array(), 'SonataAdminBundle'),
             self::TYPE_NO   => $this->translator->trans('label_type_no', array(), 'SonataAdminBundle'),
         );
+
+        $options['value_strategy'] = ChoiceList::COPY_CHOICE;
 
         return $options;
     }

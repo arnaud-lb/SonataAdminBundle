@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class DefaultType extends AbstractType
 {
@@ -32,6 +33,9 @@ class DefaultType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
+        if ('choice' === $options['field_type']) {
+            $options['field_options']['value_strategy'] = ChoiceList::COPY_CHOICE;
+        }
         $builder
             ->add('type', $options['operator_type'], array_merge(array('required' => false), $options['operator_options']))
             ->add('value', $options['field_type'], array_merge(array('required' => false), $options['field_options']))

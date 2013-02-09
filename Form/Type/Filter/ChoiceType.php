@@ -52,6 +52,10 @@ class ChoiceType extends AbstractType
             self::TYPE_EQUAL           => $this->translator->trans('label_type_equals', array(), 'SonataAdminBundle'),
         );
 
+        if ('choice' == $options['field_type']) {
+            $options['field_options']['value_strategy'] = ChoiceList::COPY_CHOICE;
+        }
+
         $builder
             ->add('type', 'choice', array('choices' => $choices, 'required' => false, 'value_strategy' => ChoiceList::COPY_CHOICE))
             ->add('value', $options['field_type'], array_merge(array('required' => false), $options['field_options']))
